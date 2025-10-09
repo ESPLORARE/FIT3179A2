@@ -32,7 +32,11 @@
       "type": "quantitative",
       "title": "Year",
       "axis": { "format": "d", "grid": false },
-      "scale": { "nice": false }                 
+      "scale": {
+        "domainMin": { "expr": "Year_Start" },
+        "domainMax": { "expr": "Year_End" },
+        "nice": false
+      }
     },
     "y": {
       "field": "Value",
@@ -51,20 +55,46 @@
   },
 
   "layer": [
+
     {
-      "mark": { "type": "area", "opacity": 0.22, "interpolate": "monotone", "tooltip": null }  
+      "data": { "values": [ { "x0": 2015, "x1": 2018 } ] },
+      "transform": [ { "filter": "2015 <= Year_End && 2018 >= Year_Start" } ],
+      "mark": { "type": "rect", "fill": "#D4AF37", "opacity": 0.15 },
+      "encoding": {
+        "x": { "field": "x0", "type": "quantitative" },
+        "x2": { "field": "x1" }
+      }
     },
+
     {
-      "mark": { "type": "line", "strokeWidth": 2, "interpolate": "monotone", "tooltip": null }  
+      "data": { "values": [ { "YearNum": 2015 } ] },
+      "transform": [ { "filter": "Year_Start <= 2015 && Year_End >= 2015" } ],
+      "mark": { "type": "rule", "stroke": "#a07900", "strokeDash": [4, 3], "strokeWidth": 1.2 },
+      "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 420 } }
     },
+
     {
-      "selection": {
-        "hover": {
-          "type": "single",
-          "on": "pointerover",
-          "empty": "none"
-        }
-      },
+      "data": { "values": [ { "YearNum": 2018 } ] },
+      "transform": [ { "filter": "Year_Start <= 2018 && Year_End >= 2018" } ],
+      "mark": { "type": "rule", "stroke": "#a07900", "strokeDash": [4, 3], "strokeWidth": 1.2 },
+      "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 420 } }
+    },
+
+    {
+      "data": { "values": [ { "mid": 2016.5, "label": "2015–2018: Export high plateau" } ] },
+      "transform": [ { "filter": "2015 <= Year_End && 2018 >= Year_Start" } ],
+      "mark": { "type": "text", "fontSize": 11, "fontStyle": "italic", "fill": "#6b7280", "align": "center" },
+      "encoding": {
+        "x": { "field": "mid", "type": "quantitative" },
+        "y": { "value": 18 },
+        "text": { "field": "label" }
+      }
+    },
+
+    { "mark": { "type": "area", "opacity": 0.22, "interpolate": "monotone", "tooltip": null } },
+    { "mark": { "type": "line", "strokeWidth": 2, "interpolate": "monotone", "tooltip": null } },
+    {
+      "selection": { "hover": { "type": "single", "on": "pointerover", "empty": "none" } },
       "mark": { "type": "point", "filled": true, "size": 55 },
       "encoding": {
         "opacity": { "condition": { "param": "hover", "value": 1 }, "value": 0 },
@@ -75,6 +105,7 @@
         ]
       }
     },
+
     {
       "data": { "values": [ { "YearNum": 2020 } ] },
       "transform": [ { "filter": "Year_Start <= 2020 && Year_End >= 2020" } ],
