@@ -1,0 +1,85 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 1000,
+  "height": 520,
+  "title": {
+    "text": "Malaysia Crude Oil Exports by Country (HS 270900), 2023",
+    "subtitle": "Size = Trade Value (thousand USD) · Color = Quantity (kg)"
+  },
+  "projection": { "type": "equalEarth" },
+  "layer": [
+    {
+      "data": { "graticule": { "step": [30, 30] } },
+      "mark": { "type": "geoshape", "stroke": "#dbe3ef", "strokeWidth": 0.7 }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179HOMEWORK10/refs/heads/main/ne_110m_admin_0_countries.json",
+        "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+      },
+      "mark": { "type": "geoshape", "fill": "#eef2f7", "stroke": "white" }
+    },
+    {
+      "data": { "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179HOMEWORK10/refs/heads/main/mys_crude_exports_2023.csv" },
+      "transform": [
+        { "filter": "datum.partner && datum.partner !== 'World' && datum.partner !== 'Other Asia, nes'" },
+        { "filter": "isValid(datum.trade_value_1000usd) && datum.trade_value_1000usd > 0" },
+        { "filter": "isValid(datum.quantity_kg) && datum.quantity_kg > 0" },
+        {
+          "lookup": "partner",
+          "from": {
+            "data": {
+              "values": [
+                { "partner": "Thailand", "lon": 100.50, "lat": 13.75 },
+                { "partner": "Australia", "lon": 149.13, "lat": -35.28 },
+                { "partner": "Japan", "lon": 139.69, "lat": 35.68 },
+                { "partner": "Brunei", "lon": 114.95, "lat": 4.90 },
+                { "partner": "India", "lon": 77.21, "lat": 28.61 },
+                { "partner": "Singapore", "lon": 103.82, "lat": 1.35 },
+                { "partner": "Philippines", "lon": 120.98, "lat": 14.60 },
+                { "partner": "China", "lon": 116.40, "lat": 39.90 },
+                { "partner": "Bangladesh", "lon": 90.41, "lat": 23.81 },
+                { "partner": "Korea, Rep.", "lon": 126.97, "lat": 37.57 },
+                { "partner": "Indonesia", "lon": 106.85, "lat": -6.21 },
+                { "partner": "Papua New Guinea", "lon": 147.18, "lat": -9.44 },
+                { "partner": "Vietnam", "lon": 105.85, "lat": 21.03 },
+                { "partner": "Hong Kong, China", "lon": 114.17, "lat": 22.32 },
+                { "partner": "United States", "lon": -77.04, "lat": 38.90 }
+              ]
+            },
+            "key": "partner",
+            "fields": ["lon", "lat"]
+          }
+        },
+        { "filter": "isValid(datum.lon) && isValid(datum.lat)" }
+      ],
+      "mark": { "type": "circle", "opacity": 0.85 },
+      "encoding": {
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude": { "field": "lat", "type": "quantitative" },
+        "size": {
+          "field": "trade_value_1000usd",
+          "type": "quantitative",
+          "title": "Value (thousand USD)",
+          "scale": { "type": "sqrt", "range": [30, 900] }
+        },
+        "color": {
+          "field": "quantity_kg",
+          "type": "quantitative",
+          "title": "Quantity (kg)",
+          "scale": { "scheme": "blues" }
+        },
+        "tooltip": [
+          { "field": "partner", "title": "Country" },
+          { "field": "trade_value_1000usd", "title": "Value (k USD)", "format": "," },
+          { "field": "quantity_kg", "title": "Quantity (kg)", "format": "," }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "legend": { "labelFontSize": 11, "titleFontSize": 12 },
+    "view": { "stroke": null }
+  }
+}
+

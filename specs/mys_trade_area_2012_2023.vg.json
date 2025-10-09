@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 420,
+  "title": {
+    "text": "Malaysia Crude Oil Imports vs Exports (2012–2023)",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179HOMEWORK10/refs/heads/main/malaysia_crude_oil_imports_exports_2012_2023.csv"
+  },
+
+  "params": [
+    {
+      "name": "Year_End",
+      "value": 2023,
+      "bind": { "input": "range", "min": 2012, "max": 2023, "step": 1, "name": "End Year: " }
+    }
+  ],
+
+  "transform": [
+    { "fold": ["Imports", "Exports"], "as": ["Flow", "Value"] },
+    { "calculate": "toNumber(datum.Year)", "as": "YearNum" },
+    { "filter": "datum.YearNum >= 2012 && datum.YearNum <= Year_End" }
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "YearNum",
+      "type": "quantitative",
+      "title": "Year",
+      "axis": { "format": "d", "grid": false },
+      "scale": { "domainMin": 2012, "nice": false }
+    },
+    "y": {
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Million barrels",
+      "stack": null,
+      "axis": { "grid": false }
+    },
+    "color": {
+      "field": "Flow",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Exports", "Imports"],
+        "range": ["#D4AF37", "#4E2A1E"] 
+      },
+      "title": null,
+      "legend": { "orient": "right" }
+    },
+    "tooltip": [
+      { "field": "YearNum", "title": "Year", "format": "d" },
+      { "field": "Flow", "title": "Flow" },
+      { "field": "Value", "title": "Value (million bbl)", "format": ".3f" }
+    ]
+  },
+
+  "layer": [
+
+
+    { "mark": { "type": "area", "opacity": 0.22, "interpolate": "monotone" } },
+    { "mark": { "type": "line", "strokeWidth": 2, "interpolate": "monotone" } },
+    {
+      "selection": { "hover": { "type": "single", "on": "pointerover", "nearest": true, "empty": "none" } },
+      "mark": { "type": "point", "filled": true, "size": 55 },
+      "encoding": { "opacity": { "condition": { "param": "hover", "value": 1 }, "value": 0 } }
+    },
+
+
+    {
+  "data": { "values": [ { "YearNum": 2020 } ] },
+  "transform": [{ "filter": "Year_End >= 2020" }],
+  "mark": { "type": "rule", "stroke": "#6b7280", "strokeDash": [4, 4], "strokeWidth": 1.2, "zindex": 10 },
+  "encoding": {
+    "x": { "field": "YearNum" },
+    "y": { "value": 0 },         
+    "y2": { "value": 420 }       
+  }
+},
+{
+  "data": { "values": [ { "YearNum": 2020, "label": "COVID-19 disruption" } ] },
+  "transform": [{ "filter": "Year_End >= 2020" }],
+  "mark": { "type": "text", "dx": 6, "dy": -8, "align": "left", "fontSize": 11, "fontStyle": "italic", "fill": "#6b7280", "zindex": 11 },
+  "encoding": {
+    "x": { "field": "YearNum" },
+    "y": { "value": 20 },         
+    "text": { "field": "label" }
+  }
+}
+
+  ],
+
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "grid": false }
+  }
+}
