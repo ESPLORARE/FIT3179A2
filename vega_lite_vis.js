@@ -9,3 +9,8 @@ vegaEmbed("#export_map", specUrl, {
 vegaEmbed("#viz_trade_area", "specs/mys_trade_area_2012_2023.vg.json", {
   actions: { export: true, source: true, editor: true, compiled: false }
 }).catch(console.error);
+
+vegaEmbed("#exports_bubble_2023", "specs/exports_bubble_2023.vg.json", {
+  actions: { export: true, source: true, editor: true, compiled: false }
+}).catch(console.error);
+
