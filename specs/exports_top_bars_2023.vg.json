@@ -1,0 +1,58 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 550,
+  "height": {"step": 16},
+  "title": {"text": "Malaysia Crude Oil Exports by Country (2023) — Top 15"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/exportCountry.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {"calculate": "toNumber(datum['Exports Value in 2023 ($)'])", "as": "Value_USD"},
+    {"filter": "isValid(datum.Value_USD) && datum.Value_USD > 0"},
+    {"calculate": "datum.Value_USD / 1e6", "as": "Value_MillionUSD"},
+    {"window": [{"op":"rank","as":"r"}], "sort": [{"field":"Value_USD","order":"descending"}]},
+    {"filter": "datum.r <= 15"}
+  ],
+  "layer": [
+    {
+      "mark": {"type":"bar", "cornerRadiusEnd": 3},
+      "encoding": {
+        "y": {"field": "Country", "type": "nominal", "sort": "-x", "title": null},
+        "x": {
+          "field": "Value_MillionUSD",
+          "type": "quantitative",
+          "scale": {"nice": true, "zero": true},
+          "axis": {
+            "title": "Exports (Million USD)",
+            "format": ",.0f",                 
+            "grid": true,
+            "gridDash": [2,2],
+            "labelFlush": false
+          }
+        },
+        "color": {
+          "condition": {"test": "datum.r==1", "value": "#0B5CAB"}, 
+          "value": "#bcd3ea"
+        },
+        "tooltip": [
+          {"field":"Country"},
+          {"field":"Value_USD","type":"quantitative","title":"Exports (USD)","format": ","},
+          {"field":"Value_MillionUSD","type":"quantitative","title":"Exports (Million USD)","format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type":"text", "align":"left", "baseline":"middle", "dx": 4, "fontWeight": "600"},
+      "encoding": {
+        "y": {"field": "Country", "type": "nominal", "sort": "-x"},
+        "x": {"field": "Value_MillionUSD", "type": "quantitative"},
+        "text": {"field": "Value_MillionUSD", "type":"quantitative", "format": ",.0f"} 
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFontSize": 11, "titleFontSize": 12}
+  }
+}

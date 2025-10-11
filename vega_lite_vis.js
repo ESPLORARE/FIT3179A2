@@ -11,6 +11,12 @@ vegaEmbed("#viz_trade_area", "specs/mys_trade_area_2012_2023.vg.json", {
 }).catch(console.error);
 
 
-vegaEmbed("#exports_treemap_2023", "specs/exports_treemap_2023.vg.json", {
+vegaEmbed("#exports_top_bars_2023", "specs/exports_top_bars_2023.vg.json?v=1", {
   actions: { export: true, source: true, editor: true, compiled: false }
 }).catch(console.error);
+
+
+vegaEmbed("#imports_top_bars_2023", "specs/imports_top_bars_2023.vg.json?v=1", {
+  actions: { export: true, source: true, editor: true, compiled: false }
+}).catch(console.error);
+

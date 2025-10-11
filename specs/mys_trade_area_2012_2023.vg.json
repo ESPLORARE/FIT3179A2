@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 900,
-  "height": 420,
+  "width": 550,
+  "height": 300,
   "title": { "text": "Malaysia Crude Oil Imports vs Exports (2012–2023)", "anchor": "start" },
   "data": {
     "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/malaysia_crude_oil_imports_exports_2012_2023.csv"
@@ -70,14 +70,14 @@
       "data": { "values": [ { "YearNum": 2015 } ] },
       "transform": [ { "filter": "Year_Start <= 2015 && Year_End >= 2015" } ],
       "mark": { "type": "rule", "stroke": "#a07900", "strokeDash": [4, 3], "strokeWidth": 1.2 },
-      "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 420 } }
+      "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 300 } }
     },
 
     {
       "data": { "values": [ { "YearNum": 2018 } ] },
       "transform": [ { "filter": "Year_Start <= 2018 && Year_End >= 2018" } ],
       "mark": { "type": "rule", "stroke": "#a07900", "strokeDash": [4, 3], "strokeWidth": 1.2 },
-      "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 420 } }
+      "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 300 } }
     },
 
     {
@@ -110,7 +110,7 @@
       "data": { "values": [ { "YearNum": 2020 } ] },
       "transform": [ { "filter": "Year_Start <= 2020 && Year_End >= 2020" } ],
       "mark": { "type": "rule", "stroke": "#6b7280", "strokeDash": [4, 4], "strokeWidth": 1.2, "zindex": 10 },
-      "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 420 } }
+      "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 300 } }
     },
     {
       "data": { "values": [ { "YearNum": 2020, "label": "COVID-19 disruption" } ] },
