@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 960,
+  "height": 560,
+  "title": {"text": "Malaysia Crude Oil Exports by Country (2023) — Treemap"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/exportCountry.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    { "calculate": "toNumber(datum['Exports Value in 2023 ($)'])", "as": "Value_USD" },
+    { "filter": "isValid(datum.Value_USD) && datum.Value_USD > 0" },
+
+
+    {
+      "treemap": "Value_USD",
+      "method": "squarify",
+      "padding": 2,
+      "ratio": 1.618,
+      "as": ["x0","y0","x1","y1","depth","children"]
+    },
+
+
+    { "filter": "!datum.children" },
+
+
+    { "calculate": "(datum.x0 + datum.x1) / 2", "as": "xMid" },
+    { "calculate": "(datum.y0 + datum.y1) / 2", "as": "yMid" },
+    { "calculate": "datum.x1 - datum.x0", "as": "w" },
+    { "calculate": "datum.y1 - datum.y0", "as": "h" },
+    { "calculate": "datum.Value_USD / 1e6", "as": "Value_MillionUSD" }
+  ],
+
+  "layer": [
+    {
+      "mark": {"type": "rect", "stroke": "white", "strokeWidth": 0.8},
+      "encoding": {
+        "x": {"field": "x0", "type": "quantitative", "scale": null, "axis": null},
+        "x2": {"field": "x1"},
+        "y": {"field": "y0", "type": "quantitative", "scale": null, "axis": null},
+        "y2": {"field": "y1"},
+        "color": {
+          "field": "Value_MillionUSD",
+          "type": "quantitative",
+          "title": "Exports (Million USD)"
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Value_USD", "type": "quantitative", "title": "Exports (USD)", "format": ","},
+          {"field": "Value_MillionUSD", "type": "quantitative", "title": "Exports (Million USD)", "format": ",.1f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "center", "baseline": "middle", "fill": "#222"},
+      "encoding": {
+        "x": {"field": "xMid", "type": "quantitative", "scale": null},
+        "y": {"field": "yMid", "type": "quantitative", "scale": null},
+        "text": {"field": "Country"},
+        "size": {
+          "condition": {
+            "test": "datum.w >= 70 && datum.h >= 35",
+            "value": 12
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+
+  "config": { "view": { "stroke": null } }
+}
