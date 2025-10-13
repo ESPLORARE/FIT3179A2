@@ -91,6 +91,15 @@
     line-height: 1.2;                     /* 让行距更紧凑些，可选 */
   }
 
+    h2{
+    font-family: "Merriweather","Noto Serif SC", serif;
+    font-weight: 700;
+    font-size: clamp(18px, 2.2vw, 28px);
+    line-height: 1.3;
+    text-align: center;
+  }
+
+
 
   </style>
 </head>
@@ -122,19 +131,22 @@
         </div>
         <aside class="aside">
           <h3>趋势观察（示例）</h3>
-          <p>• 进出口总额与国际油价周期大体同步。</p>
-          <p>• 2020 年后出口恢复更快；进口节奏不同步。</p>
-          <p>• 使用滑块聚焦近几年并标注关键拐点。</p>
-          <p class="note">提交前替换成你的正式解读与数据来源。</p>
+          <p>在2022年前都是出口量高于进口量</p>
+          <p>原因：</p>
+          <P>Weaker domestic output: mature field decline and maintenance reduce exportable crude.</P>
+          <P>Geopolitics & pricing: post Russia–Ukraine, more discounted barrels in Asia → imports more economical.</P>
+          <P>Structural shift: more “import crude → refine → export products,” so crude exports fall relative to imports.</P>
+          <p>2020年Covid 19导致石油出口量进口量都大幅度下降</p>
         </aside>
       </div>
     </section>
 
     <!-- 出口 Top-15 + 文字 -->
     <section class="section" id="sec-exports">
+      <h2>Structure of Importing Countries and Export Destinations</h2>
         <div class="row row--barsWide"> 
         <div class="viz viz--bars">
-          <h2>Top 15 Export Partners (2023)</h2>
+          <h3>Top 15 Export Partners (2023)</h3>
           <div id="exports_top_bars_2023"></div>
         </div>
         <aside class="aside">
@@ -149,7 +161,7 @@
     <section class="section" id="sec-imports">
         <div class="row row--barsWide">
         <div class="viz viz--bars">
-          <h2>Top 15 Import Sources (2023)</h2>
+          <h3>Top 15 Import Sources (2023)</h3>
           <div id="imports_top_bars_2023"></div>
         </div>
         <aside class="aside">
@@ -159,6 +171,25 @@
         </aside>
       </div>
     </section>
+
+
+    <!-- 价格 ← 体积（联动刷选） | 占满整行 -->
+    <section class="section" id="sec-link">
+      <h2></h2>
+      <h3>Crude Price vs Malaysia Export Volume (Linked Brush)</h3>
+
+      <!-- 整行图表容器：不走两列布局 -->
+      <div id="volume_controls_price" class="viz" style="max-width: var(--max-page); margin: 0 auto;"></div>
+
+      <!-- 说明文字：放在图下方 -->
+      <div class="aside" style="max-width: 800px; margin: 10px 0 0 0; text-align: left;">
+        <h3>马来西亚石油出口量如何影响国际油价？（撰写建议）</h3>
+        <p>• 拖动下方“出口体积”时间窗，观察上方“国际油价”的同步变化。</p>
+        <p>• 对比 2020 年、2022 年等时间段：出口体积增减与油价变动并非一一对应，提示全球供需与地缘事件更为主导。</p>
+        <p>• 可结合 OPEC+ 政策、运输中断、需求冲击等外生因素，讨论出口量对价格的边际影响。</p>
+      </div>
+    </section>
+
   </div>
 </body>
 </html>
