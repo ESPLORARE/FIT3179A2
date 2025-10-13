@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "vconcat": [
+    {
+      "title": {"text": "Malaysia Crude Exports — Monthly Volume (kg)", "anchor": "start"},
+      "width": 900,
+      "height": 240,
+      "data": {
+        "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/malaysia_exports_yearmonth_volume.csv",
+        "format": { "type": "csv", "parse": { "year_month": "date:%Y-%m" } }
+      },
+      "mark": { "type": "line", "interpolate": "monotone", "strokeWidth": 2 },
+      "encoding": {
+        "x": {
+          "field": "year_month",
+          "type": "temporal",
+          "scale": { "domain": { "param": "brush_from_production" } },
+          "axis": { "title": "", "tickCount": 10 }
+        },
+        "y": {
+          "field": "export_volume_kg",
+          "type": "quantitative",
+          "title": "Export Volume (kg)"
+        },
+        "tooltip": [
+          { "field": "year_month", "type": "temporal", "title": "Month" },
+          { "field": "export_volume_kg", "type": "quantitative", "title": "Volume (kg)", "format": "," }
+        ]
+      }
+    },
+
+    {
+      "title": {"text": "Malaysia Crude Oil Production (Monthly)", "anchor": "start"},
+      "width": 900,
+      "height": 70,
+      "data": {
+        "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/malaysia_monthly_crude_production.csv",
+        "format": { "type": "csv", "parse": { "year_month": "date:%Y-%m" } }
+      },
+      "mark": { "type": "line", "interpolate": "monotone" },
+      "params": [
+        { "name": "brush_from_production", "select": { "type": "interval", "encodings": ["x"] } }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year_month",
+          "type": "temporal",
+          "axis": { "title": "", "tickCount": 10 }
+        },
+        "y": {
+          "field": "production",
+          "type": "quantitative",
+          "axis": { "tickCount": 3, "grid": false },
+          "title": ""
+        },
+        "tooltip": [
+          { "field": "year_month", "type": "temporal", "title": "Month" },
+          { "field": "production", "type": "quantitative", "title": "Production" }
+        ]
+      }
+    }
+  ]
+}

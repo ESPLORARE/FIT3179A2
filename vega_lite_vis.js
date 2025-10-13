@@ -23,4 +23,6 @@ vegaEmbed("#imports_top_bars_2023", "specs/imports_top_bars_2023.vg.json?v=1", {
 vegaEmbed("#volume_controls_price", "specs/volume_controls_price_brush.vg.json", { actions:false })
   .catch(console.error);
 
-
+// vega_lite_vis.js
+vegaEmbed("#export_vs_production", "specs/export_vs_production_brush.vg.json", { actions:false })
+  .catch(console.error);
