@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+  <!-- 引入衬线字体-->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Malaysia Crude Oil Trade — 2023</title>
@@ -79,6 +82,16 @@
       .row{grid-template-columns: 1fr; gap:12px;}
       .viz--bars{max-width: 100%;}  /* 小屏条形图放宽 */
     }
+
+    header h1{
+    font-family: "Merriweather","Noto Serif SC", serif;
+    font-weight: 900;                     /* 该字体的最大常见权重 */
+    font-size: clamp(28px, 3.2vw, 44px);  /* 响应式字号：小屏28，大屏最多44 */
+    text-align: center;
+    line-height: 1.2;                     /* 让行距更紧凑些，可选 */
+  }
+
+
   </style>
 </head>
 <body>
@@ -86,8 +99,7 @@
   <div class="wrap">
     <!-- 页面标题 -->
     <header style="margin:8px 0 12px;">
-      <h1>Malaysia Crude Oil (HS 270900): Exports & Imports, 2023</h1>
-      <p style="color:var(--muted); margin-top:-2px;">上方地图独占一行；其余模块均为“左图右文”的解释式布局。</p>
+      <h1>Malaysia Crude Oil: Exports & Imports</h1>
     </header>
 
     <!-- 顶部地图（独占整行） -->
