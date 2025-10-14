@@ -88,18 +88,49 @@
     font-weight: 900;                     /* 该字体的最大常见权重 */
     font-size: clamp(28px, 3.2vw, 44px);  /* 响应式字号：小屏28，大屏最多44 */
     text-align: center;
-    line-height: 1.2;                     /* 让行距更紧凑些，可选 */
+    line-height: 2.0;                     /* 让行距更紧凑些，可选 */
   }
 
     h2{
     font-family: "Merriweather","Noto Serif SC", serif;
     font-weight: 700;
     font-size: clamp(18px, 2.2vw, 28px);
-    line-height: 1.3;
+    line-height: 1.8;
     text-align: center;
   }
 
 
+      /* 三列信息块：左中右分布；小屏自动一列 */
+    .tri-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;  /* 三列 */
+      gap: 14px;                           /* 列间距 */
+      margin-top: 10px;
+    }
+    .tri-card{
+      background: #f6f9fc;   /* 轻灰底，和你的配色接近 */
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .tri-card h4{
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: var(--ink);
+      font-weight: 700;
+      font-family: "Merriweather","Noto Serif SC", serif; /* 和标题同风格 */
+    }
+    .tri-card p{
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    /* 小屏改为单列 */
+    @media (max-width: 900px){
+      .tri-grid{ grid-template-columns: 1fr; }
+    }
 
   </style>
 </head>
@@ -186,13 +217,27 @@
         Note: The lower chart functions as an interactive filter for the upper chart.
     </p>
 
-      <!-- 说明文字：放在图下方 -->
-      <div class="aside" style="max-width: 1000px; margin: 10px 0 0 0; text-align: left;">
-        <h3>How does Malaysia's oil production affect crude oil exports?</h3>
-        <p>Same direction over time: Since 2016, due to declining crude oil production, the overall trend in export volumes has also been decreasing.</p>
-        <p>Turning points line up: In 2020, international oil prices plummeted, leading to a significant decline in both export volumes and oil production.</p>
-        <p>Lag effect: Malaysia’s oil exports follow production with a 1–2 month lag, as crude must be processed and shipped before export.</p>
-      </div>
+    <h3>How does Malaysia's oil production affect crude oil exports?</h3>
+
+
+    <!--左中右三段式卡片文字说明-->
+     <div class="tri-grid">
+  <div class="tri-card">
+    <h4>Same direction over time</h4>
+    <p>Since 2016, due to declining crude oil production, the overall trend in export volumes has also been decreasing.</p>
+  </div>
+
+  <div class="tri-card">
+    <h4>Turning points line up</h4>
+    <p>In 2020, international oil prices plummeted, leading to a significant decline in both export volumes and oil production.</p>
+  </div>
+
+  <div class="tri-card">
+    <h4>Lag effect</h4>
+    <p>Malaysia’s oil exports follow production with a 1–2 month lag, as crude must be processed and shipped before export.</p>
+  </div>
+</div>
+
     </section>
 
   </div>

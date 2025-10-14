@@ -2,7 +2,6 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 550,
   "height": {"step": 20},
-  "title": {"text": "Malaysia Crude Oil Exports by Country (2023) — Top 15"},
   "data": {
     "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/exportCountry.csv",
     "format": {"type": "csv"}
