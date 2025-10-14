@@ -116,9 +116,6 @@
       <h2>Export Partners — Geography (2023)</h2>
       <!-- ⚠️ ID 不要改：vega_lite_vis.js 里用 #export_map 挂载 -->
       <div id="export_map" class="viz viz--map"></div>
-      <p class="note" style="color:var(--muted); font-size:14px;">
-        说明：悬停查看国家与金额；Equal Earth 投影；单位 USD。
-      </p>
     </section>
 
     <!-- 面积图 + 文字（左图右文） -->
@@ -168,27 +165,33 @@
         </div>
         <aside class="aside">
           <h3>Import Structure</h3>
-          <p>• 主要来源集中在中东；其次为非洲与美洲。</p>
-          <p>• 与出口去向对比，体现“来源—去向”的地域差别。</p>
+          <p>Highly concentrated: Saudi Arabia US$7.24B and UAE US$2.28B → Top-2 = ~66% of Top-15; Top-5 = ~81% (total ≈ US$14.46B)</p>
+          <p>Supplier mix: Middle East–heavy (Saudi, UAE, Kuwait, Qatar, Oman), with secondary flows from Brazil/Angola/Gabon plus US & APAC (Australia, Thailand, Brunei).</p>
+          <p>Implication: Strong reliance on Middle-East grades; Americas/Africa provide some diversification.</p>
         </aside>
       </div>
     </section>
 
 
-    <!-- 价格 ← 体积（联动刷选） | 占满整行 -->
+    <!-- 产量 ← 体积（联动刷选） | 占满整行 -->
     <section class="section" id="sec-link">
-      <h2></h2>
+      <h2>Relation Between Malaysia's Crude Oil Production and Exports</h2>
       <h3>Crude Price vs Malaysia Export Volume (Linked Brush)</h3>
 
       <!-- 整行图表容器：不走两列布局 -->
       <div id="export_vs_production" class="viz" style="max-width: var(--max-page); margin: 0 auto;"></div>
+      
+      <!--灰色文字说明-->
+      <p class="note" style="color:var(--muted); font-size:14px;">
+        Note: The lower chart functions as an interactive filter for the upper chart.
+    </p>
 
       <!-- 说明文字：放在图下方 -->
-      <div class="aside" style="max-width: 800px; margin: 10px 0 0 0; text-align: left;">
-        <h3>马来西亚石油出口量如何影响国际油价？（撰写建议）</h3>
-        <p>• 拖动下方“出口体积”时间窗，观察上方“国际油价”的同步变化。</p>
-        <p>• 对比 2020 年、2022 年等时间段：出口体积增减与油价变动并非一一对应，提示全球供需与地缘事件更为主导。</p>
-        <p>• 可结合 OPEC+ 政策、运输中断、需求冲击等外生因素，讨论出口量对价格的边际影响。</p>
+      <div class="aside" style="max-width: 1000px; margin: 10px 0 0 0; text-align: left;">
+        <h3>How does Malaysia's oil production affect crude oil exports?</h3>
+        <p>Same direction over time: Since 2016, due to declining crude oil production, the overall trend in export volumes has also been decreasing.</p>
+        <p>Turning points line up: In 2020, international oil prices plummeted, leading to a significant decline in both export volumes and oil production.</p>
+        <p>lag effect: Malaysia’s oil exports follow production with a 1–2 month lag, as crude must be processed and shipped before export.</p>
       </div>
     </section>
 
