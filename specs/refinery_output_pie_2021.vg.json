@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Malaysia Refinery Output by Product (2021)", "anchor": "start"},
+  "width": "container",
+  "height": 320,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/malaysia_refinery_output_2021.csv",
+    "format": { "type": "csv", "parse": { "Percentage": "number" } }
+  },
+
+  "transform": [
+    { "filter": "isValid(datum.Percentage) && datum.Percentage > 0" },
+    { "calculate": "datum.Percentage / 100", "as": "pct" },
+    { "calculate": "datum.Product + ' ' + (round(datum.Percentage*10)/10) + '%'", "as": "Label" }
+  ],
+
+  "layer": [
+    {
+      "mark": { "type": "arc", "innerRadius": 70, "stroke": "#ffffff", "strokeWidth": 1 },
+      "encoding": {
+        "theta": { "field": "pct", "type": "quantitative", "aggregate": "sum" },
+        "color": {
+          "field": "Product",
+          "type": "nominal",
+          "legend": { "title": null }
+        },
+        "order": { "field": "pct", "type": "quantitative", "sort": "descending" },
+        "tooltip": [
+          { "field": "Product", "title": "Product" },
+          { "field": "Percentage", "type": "quantitative", "title": "Share (%)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "text", "fontSize": 12, "fill": "#1f2937" },
+      "encoding": {
+        "theta": { "field": "pct", "type": "quantitative", "stack": true },
+        "radius": { "value": 110 },                      
+        "text": {
+          "condition": { "test": "datum.pct >= 0.05", "field": "Label" }, 
+          "value": ""
+        }
+      }
+    }
+  ],
+
+  "config": { "view": { "stroke": null } }
+}

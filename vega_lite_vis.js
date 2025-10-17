@@ -26,3 +26,7 @@ vegaEmbed("#volume_controls_price", "specs/volume_controls_price_brush.vg.json",
 // vega_lite_vis.js
 vegaEmbed("#export_vs_production", "specs/export_vs_production_brush.vg.json", { actions:false })
   .catch(console.error);
+
+// vega_lite_vis.js
+vegaEmbed("#refinery_output_pie", "specs/refinery_output_pie_2021.vg.json", { actions:false })
+  .catch(console.error);
