@@ -150,6 +150,46 @@
     #sec-refinery .aside{ max-width: 300px; }
 
 
+    /* --- Metadata footer --- */
+.meta {
+  margin: 28px 0 10px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);             /* gray but readable */
+  font-size: 13px;                 /* small & unobtrusive */
+  background: transparent;         /* keep it subtle */
+}
+.meta h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--ink);
+}
+.meta dl {
+  display: grid;
+  grid-template-columns: 130px 1fr;  /* label : value */
+  gap: 6px 12px;
+  margin: 0;
+}
+.meta dt {
+  font-weight: 600;
+  color: var(--ink);
+}
+.meta dd {
+  margin: 0;
+}
+.meta a {
+  color: inherit;                   /* same muted tone */
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.meta a:hover { color: var(--ink); } /* slightly darker on hover */
+
+/* Stack nicely on mobile */
+@media (max-width: 900px){
+  .meta dl { grid-template-columns: 1fr; }
+}
+
+
   </style>
 <!-- style 分割线-------style 分割线--------------style 分割线----------------style 分割线------------------style 分割线----------------- -->
 </head>
@@ -180,7 +220,7 @@
           <h3>Trend Observation</h3>
           <p>COVID-19 caused a sharp decline in crude oil imports and exports in 2022.</p>
           <p>Exports exceeded imports until 2022</p>
-          <p>Reasons for the Crude Oil Trade Deficit：</p>
+          <p><strong>Reason for the Crude Oil Trade Deficit：</strong></p>
           <P>Weaker domestic output: mature field decline and maintenance reduce exportable crude.</P>
           <P>Geopolitics & pricing: post Russia–Ukraine, more discounted barrels in Asia → imports more economical.</P>
           <P>Structural shift: more “import crude → refine → export products,” so crude exports fall relative to imports.</P>
@@ -273,6 +313,30 @@
     </aside>
   </div>
 </section>
+
+
+
+
+<section class="meta" aria-label="Page metadata">
+  <h3>Metadata</h3>
+  <dl>
+    <dt>Data sources</dt>
+    <dd>
+      <a href="https://www.st.gov.my/contents/files/download/99/Malaysia_Energy_Statistics_Handbook_2023.pdf" target="_blank" rel="noopener">official publication</a> ·
+      <a href="https://www.ceicdata.com/en/indicator/malaysia/crude-oil-exports" target="_blank" rel="noopener">CEIC — Malaysia Crude Oil Exports</a> ·
+      <a href="https://www.ceicdata.com/en/indicator/malaysia/crude-oil-imports" target="_blank" rel="noopener">CEIC — Malaysia Crude Oil Imports</a> ·
+      <a href="https://oec.world/en/profile/bilateral-product/crude-petroleum/reporter/mys?redirect=true" target="_blank" rel="noopener">OEC — Malaysia Crude Petroleum Trade Profile</a> ·
+      <a href="https://www.eia.gov/international/data/country/MYS/petroleum-and-other-liquids/monthly-petroleum-and-other-liquids-production?pd=5&p=0000000000000000000000000000000000vg&u=0&f=M&v=mapbubble&a=-&i=none&vo=value&t=C&g=none&l=249--153&s=94694400000&e=1748736000000" target="_blank" rel="noopener">EIA — Monthly Petroleum &amp; Other Liquids: Production (Malaysia)</a>
+    </dd>
+
+    <dt>Author</dt>
+    <dd>Song Yifan</dd>
+
+    <dt>Last updated</dt>
+    <dd>17 Oct 2025 (MYT)</dd>
+  </dl>
+</section>
+
 
   </div>
 </body>

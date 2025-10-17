@@ -3,16 +3,12 @@
   "width": 550,
   "height": 300,
   "title": { "text": "Malaysia Crude Oil Imports vs Exports (2012–2023)", "anchor": "start" },
+
   "data": {
     "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/malaysia_crude_oil_imports_exports_2012_2023.csv"
   },
 
   "params": [
-    {
-      "name": "Year_Start",
-      "value": 2012,
-      "bind": { "input": "range", "min": 2012, "max": 2023, "step": 1, "name": "Start Year: " }
-    },
     {
       "name": "Year_End",
       "value": 2023,
@@ -23,7 +19,7 @@
   "transform": [
     { "fold": ["Imports", "Exports"], "as": ["Flow", "Value"] },
     { "calculate": "toNumber(datum.Year)", "as": "YearNum" },
-    { "filter": "datum.YearNum >= Year_Start && datum.YearNum <= Year_End" }
+    { "filter": "datum.YearNum <= Year_End" }
   ],
 
   "encoding": {
@@ -33,7 +29,7 @@
       "title": "Year",
       "axis": { "format": "d", "grid": false },
       "scale": {
-        "domainMin": { "expr": "Year_Start" },
+        "domainMin": 2012,
         "domainMax": { "expr": "Year_End" },
         "nice": false
       }
@@ -55,34 +51,30 @@
   },
 
   "layer": [
-
     {
       "data": { "values": [ { "x0": 2015, "x1": 2018 } ] },
-      "transform": [ { "filter": "2015 <= Year_End && 2018 >= Year_Start" } ],
-      "mark": { "type": "rect", "fill": "#D4AF37", "opacity": 0.15 },
+      "transform": [ { "filter": "Year_End >= 2015" } ],
+      "mark": { "type": "rect", "fill": "#fff0be", "opacity": 0.15 },
       "encoding": {
         "x": { "field": "x0", "type": "quantitative" },
         "x2": { "field": "x1" }
       }
     },
-
     {
       "data": { "values": [ { "YearNum": 2015 } ] },
-      "transform": [ { "filter": "Year_Start <= 2015 && Year_End >= 2015" } ],
-      "mark": { "type": "rule", "stroke": "#a07900", "strokeDash": [4, 3], "strokeWidth": 1.2 },
+      "transform": [ { "filter": "Year_End >= 2015" } ],
+      "mark": { "type": "rule", "stroke": "#644d09", "strokeDash": [4, 3], "strokeWidth": 1.2 },
       "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 300 } }
     },
-
     {
       "data": { "values": [ { "YearNum": 2018 } ] },
-      "transform": [ { "filter": "Year_Start <= 2018 && Year_End >= 2018" } ],
-      "mark": { "type": "rule", "stroke": "#a07900", "strokeDash": [4, 3], "strokeWidth": 1.2 },
+      "transform": [ { "filter": "Year_End >= 2018" } ],
+      "mark": { "type": "rule", "stroke": "#644d09", "strokeDash": [4, 3], "strokeWidth": 1.2 },
       "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 300 } }
     },
-
     {
       "data": { "values": [ { "mid": 2016.5, "label": "2015–2018: Export high plateau" } ] },
-      "transform": [ { "filter": "2015 <= Year_End && 2018 >= Year_Start" } ],
+      "transform": [ { "filter": "Year_End >= 2015" } ],
       "mark": { "type": "text", "fontSize": 11, "fontStyle": "italic", "fill": "#6b7280", "align": "center" },
       "encoding": {
         "x": { "field": "mid", "type": "quantitative" },
@@ -108,13 +100,13 @@
 
     {
       "data": { "values": [ { "YearNum": 2020 } ] },
-      "transform": [ { "filter": "Year_Start <= 2020 && Year_End >= 2020" } ],
+      "transform": [ { "filter": "Year_End >= 2020" } ],
       "mark": { "type": "rule", "stroke": "#6b7280", "strokeDash": [4, 4], "strokeWidth": 1.2, "zindex": 10 },
       "encoding": { "x": { "field": "YearNum" }, "y": { "value": 0 }, "y2": { "value": 300 } }
     },
     {
       "data": { "values": [ { "YearNum": 2020, "label": "COVID-19 disruption" } ] },
-      "transform": [ { "filter": "Year_Start <= 2020 && Year_End >= 2020" } ],
+      "transform": [ { "filter": "Year_End >= 2020" } ],
       "mark": { "type": "text", "dx": 6, "dy": -8, "align": "left", "fontSize": 11, "fontStyle": "italic", "fill": "#6b7280", "zindex": 11 },
       "encoding": { "x": { "field": "YearNum" }, "y": { "value": 20 }, "text": { "field": "label" } }
     }
