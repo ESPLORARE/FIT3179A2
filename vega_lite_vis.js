@@ -27,6 +27,8 @@ vegaEmbed("#volume_controls_price", "specs/volume_controls_price_brush.vg.json",
 vegaEmbed("#export_vs_production", "specs/export_vs_production_brush.vg.json", { actions:false })
   .catch(console.error);
 
-// vega_lite_vis.js
-vegaEmbed("#refinery_output_pie", "specs/refinery_output_pie_2021.vg.json", { actions:false })
-  .catch(console.error);
+vegaEmbed("#refinery_output_donut_2021", "specs/refinery_output_donut_2021.vg.json", {
+  mode: "vega-lite",
+  actions: false
+}).catch(console.error);
+

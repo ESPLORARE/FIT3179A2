@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+  "text": "Malaysia Refinery Output by Product (2021)",
+  "anchor": "start",
+  "offset": 28
+  },
+  "width": 550,
+  "height": 300,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/ESPLORARE/FIT3179A2/refs/heads/main/malaysia_refinery_output_2021.csv",
+    "format": { "type": "csv", "parse": { "Percentage": "number" } }
+  },
+
+  "transform": [
+    { "filter": "isValid(datum.Percentage) && datum.Percentage > 0" }
+  ],
+
+  "mark": { "type": "arc", "innerRadius": 90, "stroke": "#fff", "strokeWidth": 1 },
+
+  "encoding": {
+    "theta": { "field": "Percentage", "type": "quantitative", "aggregate": "sum" },
+    "color": {
+      "field": "Product",
+      "type": "nominal",
+      "legend": { "title": null },
+      "scale": {
+        "domain": [
+          "Petrol","Diesel","ATF & AVGAS","LPG",
+          "Fuel Oil","Non-Energy","Refinery Gas","Kerosene"
+        ],
+        "range": [
+          "#1f77b4",  
+          "#9467bd",  
+          "#ff7f0e",  
+          "#8c564b",  
+          "#17becf",  
+          "#7f7f7f", 
+          "#aec7e8",  
+          "#c5b0d5"  
+        ]
+      }
+    },
+    "order": { "field": "Percentage", "type": "quantitative", "sort": "descending" },
+    "tooltip": [
+      {"field": "Product", "title": "Product"},
+      {"field": "Percentage", "type": "quantitative", "title": "Share (%)", "format": ".1f"}
+    ]
+  },
+
+  "config": { "view": { "stroke": null } }
+}

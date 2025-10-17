@@ -26,8 +26,8 @@
       --bars-max: 520px;    /* 两个 Top-15 条形图的最大宽度 */
 
       /* 左图右文列宽比例（大屏）：左 1.3 : 右 0.7，可按需改成 1.2/.8 等 */
-      --cols-left: 1.35fr;
-      --cols-right: .65fr;
+      --cols-left: 1.4fr;
+      --cols-right: .6fr;
 
       /* 颜色/排版（可选） */
       --ink: #0a2540;
@@ -71,11 +71,9 @@
     .aside{font-size:15px;}
     .aside .note{color:var(--muted); font-size:14px; margin-top:6px;}
 
-
-
     /* 仅在条形图那两行放大图，去掉 520px 上限 */
     .row--barsWide .viz--bars { max-width: none; }   /* 或写 100% 也行 */
-    .row--barsWide { grid-template-columns: 1.5fr .5fr; }  /* 想更夸张就 1.8 : .2 */
+    .row--barsWide { grid-template-columns: 1.4fr .6fr; }  /* 想更夸张就 1.8 : .2 */
 
 
     /* 响应式：小屏一列 */
@@ -140,6 +138,18 @@
       .tri-grid{ grid-template-columns: 1fr; }
     }
 
+
+
+    /* 只收紧“炼油去向”这一行的列距与比例 */
+    #sec-refinery .row{
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, .6fr); /* 左宽右窄 */
+      gap: 12px;                                              /* 列间距更小 */
+    }
+
+    /* 可选：限制说明列最大宽度，避免看起来留白多 */
+    #sec-refinery .aside{ max-width: 300px; }
+
+
   </style>
 <!-- style 分割线-------style 分割线--------------style 分割线----------------style 分割线------------------style 分割线----------------- -->
 </head>
@@ -188,10 +198,10 @@
           <div id="exports_top_bars_2023"></div>
         </div>
         <aside class="aside">
-          <h3>Export Structure</h3>
-          <p>Highly concentrated: China ≈ US$19B (~69%) of Top-15 exports; Top 5 buyers ≈ 95%.</p>
-          <p>Portfolio is APAC-centric (China, Australia, Thailand, India, Brunei) → exposure to single-market & route risks (South China Sea/Malacca).</p>
-          <p>Priorities: diversify buyers (India/Japan/Korea/ASEAN), mix term + spot contracts, and move up the value chain (refined products/petchem feedstocks).</p>
+          <h3><strong>Export Structure</strong> </h3>
+          <p><strong> concentrated:</strong> China ≈ US$19B (~69%) of Top-15 exports; Top 5 buyers ≈ 95%.</p>
+          <p><strong>Portfolio is APAC-centric </strong>(China, Australia, Thailand, India, Brunei) → exposure to single-market & route risks (South China Sea/Malacca).</p>
+          <p><strong>Priorities: </strong>diversify buyers (India/Japan/Korea/ASEAN), mix term + spot contracts, and move up the value chain (refined products/petchem feedstocks).</p>
         </aside>
       </div>
     </section>
@@ -204,10 +214,10 @@
           <div id="imports_top_bars_2023"></div>
         </div>
         <aside class="aside">
-          <h3>Import Structure</h3>
-          <p>Highly concentrated: Saudi Arabia US$7.24B and UAE US$2.28B → Top-2 = ~66% of Top-15; Top-5 = ~81% (total ≈ US$14.46B)</p>
-          <p>Supplier mix: Middle East–heavy (Saudi, UAE, Kuwait, Qatar, Oman), with secondary flows from Brazil/Angola/Gabon plus US & APAC (Australia, Thailand, Brunei).</p>
-          <p>Implication: Strong reliance on Middle-East grades; Americas/Africa provide some diversification.</p>
+          <h3><strong>Import Structure</strong></h3>
+          <p><strong>concentrated: </strong> Saudi Arabia US$7.24B and UAE US$2.28B → Top-2 = ~66% of Top-15; Top-5 = ~81% (total ≈ US$14.46B)</p>
+          <p><strong>Supplier mix:</strong> Middle East–heavy (Saudi, UAE, Kuwait, Qatar, Oman), with secondary flows from Brazil/Angola/Gabon plus US & APAC (Australia, Thailand, Brunei).</p>
+          <p><strong>Implication:</strong> Strong reliance on Middle-East grades; Americas/Africa provide some diversification.</p>
         </aside>
       </div>
     </section>
@@ -245,12 +255,24 @@
     <p>Malaysia’s oil exports follow production with a 1–2 month lag, as crude must be processed and shipped before export.</p>
   </div>
 </div>
+</section>
 
-    </section>
+<!-- 炼油去向：左图右文 -->
+<section class="section" id="sec-refinery">
+  <h2>Refining Output Structure of Malaysia’s Crude Oil</h2>
+  <div class="row row--barsWide">
+    <div class="viz">
+      <div id="refinery_output_donut_2021"></div>
+    </div>
+    <aside class="aside">
+      <h3>Key insights</h3>
 
-    <h3 class="chart-title">Refinery Output Share</h3>
-    <div id="refinery_output_pie"></div>
-
+      <p><strong>Transport-focused:</strong> Petrol and Diesel together make up about <strong>60.2%</strong> of total refinery output, forming the core of Malaysia’s refined products.</p>
+      <p><strong>Aviation demand:</strong> ATF &amp; AVGAS account for <strong>11.1%</strong>, highlighting steady demand for middle distillates alongside diesel.</p>
+      <p><strong>Limited heavy ends:</strong> Fuel Oil contributes only <strong>7.0%</strong>, indicating a relatively light product slate and constrained heavy residue yield.</p>
+    </aside>
+  </div>
+</section>
 
   </div>
 </body>
