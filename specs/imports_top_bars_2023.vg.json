@@ -30,8 +30,7 @@
         },
         "tooltip": [
           {"field":"Exporter Country", "title":"Country"},
-          {"field":"Value_USD","type":"quantitative","title":"Imports (USD)","format":","},
-          {"field":"Value_MillionUSD","type":"quantitative","title":"Imports (Million USD)","format":",.0f"}
+          {"field":"Value_USD","type":"quantitative","title":"Imports (USD)","format":","}
         ]
       }
     },
@@ -39,8 +38,7 @@
       "mark": {"type":"text", "align":"left", "baseline":"middle", "dx": 4, "fontWeight": "600"},
       "encoding": {
         "y": {"field": "Exporter Country", "type": "nominal", "sort": "-x"},
-        "x": {"field": "Value_MillionUSD", "type": "quantitative"},
-        "text": {"field": "Value_MillionUSD", "type":"quantitative", "format": ",.0f"}
+        "x": {"field": "Value_MillionUSD", "type": "quantitative"}
       }
     }
   ],

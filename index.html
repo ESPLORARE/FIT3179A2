@@ -92,13 +92,20 @@
     line-height: 2.0;                     /* 让行距更紧凑些，可选 */
   }
 
-    h2{
-    font-family: "Merriweather","Noto Serif SC", serif;
-    font-weight: 700;
-    font-size: clamp(18px, 2.2vw, 28px);
-    line-height: 1.8;
-    text-align: center;
+  :root{
+    --h2-bg: #e9f0fe;      /* 浅色背景 */
+    --h2-border: #e1e9f5;  /* 边框色 */
   }
+
+  h2{
+    background: var(--h2-bg);
+    border: 1px solid var(--h2-border);
+    display: inline-block;      /* 让背景只包住文字 */
+    padding: 6px 14px;
+    border-radius: 10px;
+    box-shadow: 0 1px 0 rgba(10,37,64,.04);  /* 轻微立体感，可删 */
+  }
+
 
 
       /* 三列信息块：左中右分布；小屏自动一列 */
