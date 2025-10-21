@@ -25,26 +25,39 @@
       --area-max: 820px;    /* 面积图的最大宽度（避免横向滚动） */
       --bars-max: 520px;    /* 两个 Top-15 条形图的最大宽度 */
 
-      /* 左图右文列宽比例（大屏）：左 1.3 : 右 0.7，可按需改成 1.2/.8 等 */
+      /* 左图右文列宽比例（大屏）：左 1.4 : 右 0.6，可按需改成 1.2/.8 等 */
       --cols-left: 1.4fr;
       --cols-right: .6fr;
 
+       /* ======== 全局配色变量（统一管理全站颜色） ======== */
       /* 颜色/排版（可选） */
-      --ink: #0a2540;
-      --text:#28354a;
-      --muted:#617086;
-      --line:#e7eef7;
-      --bg:#fbfdff;
+      --ink: #0a2540;  /* 【标题墨色】用于 h1~h4、大标题、小标题、hover 链接等文字，给人稳重感 */
+      --text:#28354a;  /* 【正文主色】用于普通段落、aside 说明等主体文字，易读不刺眼 */
+      --muted:#617086;  /* 【次要信息色】用于灰色注释、小字说明、meta data区等较弱层级文字 */
+      --line:#e7eef7;  /* 【分隔线/边框色】用于 section 顶部分隔线、卡片边框、底部 meta 分割线 */
+      --bg:#fbfdff;   /* 【背景色】页面整体底色，比纯白略暖一点，让视觉更柔和 */
     }
 
     /* 全局文字与背景 */
     html,body{
-      margin:0; padding:0;
-      background:var(--bg); color:var(--text);
+      margin: 0;                     /* 去掉浏览器默认的外边距（防止页面四周留白） */
+      padding: 0;                    /* 去掉默认内边距 */
+      background: var(--bg);         /* 设置页面背景颜色，引用上面定义的全局变量 --bg */
+      color: var(--text);            /* 设置全局文字颜色，引用正文主色变量 --text */
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                                    /* 设置全局字体优先级：优先用 Inter，其次使用系统无衬线字体 */
     }
-    h1,h2,h3{color:var(--ink); margin:0 0 10px;}
-    p{line-height:1.65; margin:0 0 12px;}
+
+    h1,h2,h3{
+      color: var(--ink);             /* 标题文字颜色使用全局墨色 --ink，使标题更醒目 */
+      margin: 0 0 10px;              /* 清除上边距，只保留下方 10px 间距，避免标题与下一段文字贴太近 */
+    }
+
+    p{
+      line-height: 1.65;             /* 设置行距为字体高度的 1.65 倍，提高段落可读性 */
+      margin: 0 0 12px;              /* 段落底部留 12px 间距，段落之间保持适度空隙 */
+    }
+
 
     /* 页面包裹层：统一左右留白与最大宽 */
     .wrap{max-width:var(--max-page); margin:0 auto; padding:16px;}
@@ -203,7 +216,7 @@
 
     <!-- 顶部地图（独占整行） -->
     <section class="section" id="sec-map">
-      <h2>Export Partners — Geography (2023)</h2>
+      <h2>Export Partners — Geography (2022)</h2>
       <!-- ⚠️ ID 不要改：vega_lite_vis.js 里用 #export_map 挂载 -->
       <div id="export_map" class="viz viz--map"></div>
     </section>
